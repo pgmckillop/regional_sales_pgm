@@ -206,7 +206,6 @@ def get_customer_rating():
             print("Invalid input. Please enter an integer value.")
 
 
-
 #   7.    Get valid Start and End dates
 #   Part 1 Start Date
 def get_start_date():
@@ -248,7 +247,6 @@ class EnhancedSearchData:
         self.end_date_selected = end_date_selected
 
 
-
 #   9. Get all the data needed for processing the enhanced search option
 #       The data entered by the user will instantiate an object of
 #       Class EnhancedSearchData
@@ -275,13 +273,52 @@ def harvest_enhanced_search_data():
         print("Something went wrong in the process_enhanced_search_data procedure")
 
 
+#   10. Process the enhanced search
+#       call this method from menu option 3.
+def process_enhanced_search():
+    # get the data from the user using the modularised method
+    search_data = harvest_enhanced_search_data()
 
+    # SPLIT
 
+    # Left Hand Side
+    filters = sales2.loc[:, 'Region':'Customer_Rating']
+    # TODO: Debug
+    print(filters)
 
+    # Right hand side
+    sales2_data = sales2.loc[:, search_data.start_date_selected:search_data.end_date_selected]
+    print(sales2_data)
 
+    # APPLY and COMBINE
+    # Filter the data using the data  object
+    result = pd.concat([filters, sales2_data], axis=1, join='inner').where(
+        (filters['Region'].str.lower() == search_data.region_selected) &
+        (filters['Type'].str.lower() == search_data.product_type_selected) &
+        (filters['Sales_Team'].str.lower() == search_data.sales_team_selected))
 
+    result = pd.DataFrame(result)
 
+    # Remove null values and reconfigure
+    result.dropna(inplace=True)
 
+    # Do we have data to show?
+    if not result.empty:
+        print("There is data meeting the parameters set.")
+        print(result)
+        # get the mean values
+        average_sales = sales2_data.mean()
+        # Plot with matplotlib using enhancement options
+        plt.figure(figsize=(10, 6))
+        plt.style.use('ggplot')
+        average_sales.plot(kind='bar', width=0.8, figsize=(14, 8))
+        plt.xlabel('Month')
+        plt.xticks(rotation=45)  # Rotate the x-axis labels for better readability
+        plt.ylabel('Average Sales')
+        # Output the chart
+        plt.show()
+    else:
+        print("There is no data meeting the parameters set.")
 
 
 # Display menu when application launches
@@ -324,6 +361,7 @@ while x == 1 or x == 2 or x == 3 or x == 4 or x == 5 or x == 6 or x == 7 or x ==
         # Enhanced search
         print()
         print("Enhanced search selected")
+        process_enhanced_search()
     elif x == 4:
         # Team performance
         print()
