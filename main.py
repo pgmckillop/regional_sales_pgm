@@ -207,6 +207,75 @@ def get_customer_rating():
 
 
 
+#   7.    Get valid Start and End dates
+#   Part 1 Start Date
+def get_start_date():
+    while True:
+        selected_start_date = input("Enter a start data in the format 01-Mmm: ")
+        if selected_start_date not in sales2.columns:
+            print("ERROR: Start date not found")
+        else:
+            print(f"{selected_start_date} set as Start Date.")
+            break
+    return selected_start_date
+
+
+#   Part 2 End Date
+def get_end_date():
+    while True:
+        selected_end_date = input("Enter an end date in the format 01-Mmm: ")
+        if selected_end_date not in sales2.columns:
+            print("ERROR: End date not found")
+        else:
+            print(f"{selected_end_date} set as End Date")
+            break
+    return selected_end_date
+
+
+#   8.  Class to manage the data for the enhanced search
+#       so that it can be handled as a single object
+class EnhancedSearchData:
+    def __init__(self,
+                 region_selected,
+                 product_type_selected,
+                 sales_team_selected,
+                 start_date_selected,
+                 end_date_selected):
+        self.region_selected = region_selected
+        self.product_type_selected = product_type_selected
+        self.sales_team_selected = sales_team_selected
+        self.start_date_selected = start_date_selected
+        self.end_date_selected = end_date_selected
+
+
+
+#   9. Get all the data needed for processing the enhanced search option
+#       The data entered by the user will instantiate an object of
+#       Class EnhancedSearchData
+def harvest_enhanced_search_data():
+    try:
+        set_region = get_region()
+        set_type = get_product_type()
+        set_team = get_sales_team()
+        set_start = get_start_date()
+        set_end = get_end_date()
+
+        search_data = EnhancedSearchData(set_region, set_type, set_team, set_start, set_end)
+
+        re = search_data.region_selected
+        ty = search_data.product_type_selected
+        st = search_data.sales_team_selected
+        sd = search_data.start_date_selected
+        ed = search_data.end_date_selected
+
+        print(f"You selected Region {re}, Type {ty}, Team {st}, between {sd} and {ed}")
+
+        return search_data
+    except:
+        print("Something went wrong in the process_enhanced_search_data procedure")
+
+
+
 
 
 

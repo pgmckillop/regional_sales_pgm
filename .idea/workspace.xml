@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ef97230e-8c4a-4f78-8b4d-f1acb34813c4" name="Changes" comment="Video 308 end">
+    <list default="true" id="ef97230e-8c4a-4f78-8b4d-f1acb34813c4" name="Changes" comment="Video 309 end">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -16,7 +16,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="305-Menu" />
+        <entry key="$PROJECT_DIR$" value="309-Enhanced-search-2" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -38,7 +38,7 @@
     "Python.main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "309-Enhanced-search-2",
+    "git-widget-placeholder": "310-Enhanced-Search-3",
     "last_opened_file_path": "E:/031 PyCharm Split-Apply-Combine/002 Video Build/regional_sales_pgm"
   }
 }]]></component>
@@ -87,7 +87,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708354650421</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Video 309 end">
+      <option name="closed" value="true" />
+      <created>1708357739112</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1708357739112</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -106,6 +114,7 @@
     <MESSAGE value="Base build pre development" />
     <MESSAGE value="Regional Sales Analysis function complete. Next step menu loop" />
     <MESSAGE value="Video 308 end" />
-    <option name="LAST_COMMIT_MESSAGE" value="Video 308 end" />
+    <MESSAGE value="Video 309 end" />
+    <option name="LAST_COMMIT_MESSAGE" value="Video 309 end" />
   </component>
 </project>
