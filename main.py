@@ -8,12 +8,14 @@
 # Import libraries
 import pandas as pd
 from matplotlib import pyplot as plt
+
 # import datetime
 # import numpy as np
 
 # Import the data into a DataFrame
 sales = pd.read_csv('regional_sales.csv')
 sales2 = pd.read_csv('regional_sales_2.csv')
+
 
 # Modularised main menu
 def main_menu():
@@ -113,6 +115,7 @@ def print_valid_product_types():
     for t in unique_types:
         print(f"\t{t}")
 
+
 #   3.  list of Sales Teams
 def print_valid_sales_teams():
     teams = sales2['Sales_Team'].values
@@ -121,11 +124,102 @@ def print_valid_sales_teams():
     for t in unique_teams:
         print(f"\t{t}")
 
+
+#   SPARE for Development
+# 3X. Range of customer ratings
+def print_customer_rating_range():
+    rating_min = sales2["Customer_Rating"].min()
+    rating_max = sales2["Customer_Rating"].max()
+    print(f"You can select a customer rating between {rating_min} and {rating_max}")
+
+
+# 4. Get valid region from the user
+def get_region():
+    # Check loop
+    while True:
+        # Call the modularised method from 1. above
+        # to offer best chance and good UX
+        print_valid_regions()
+        # get value and convert to lower to deal with spelling variations.
+        selected_region = input("Enter the name of the Region to check: ").lower()
+        # Check if in the dataframe
+        if selected_region not in sales2["Region"].str.lower().values:
+            # inform user of error
+            print("Invalid Region name entered")
+        else:
+            # confirm and break
+            print()
+            print(f"{selected_region} selected")
+            break
+    # return function value
+    return selected_region
+
+
+# 5. Get the product type from the user
+#       Same strategy. No comments needed
+def get_product_type():
+    while True:
+        print_valid_product_types()
+        selected_type = input("Enter the name of the Product Type to check: ").lower()
+        if selected_type not in sales2["Type"].str.lower().values:
+            print("Invalid Product Type")
+        else:
+            print()
+            print(f"{selected_type} selected")
+            break
+    return selected_type
+
+
+#   6.  Get Sales team
+def get_sales_team():
+    while True:
+        print_valid_sales_teams()
+        selected_team = input("Enter the name os the Sales Team to check: ").lower()
+        if selected_team not in sales2['Sales_Team'].str.lower().values:
+            print("Invalid Sales Team name")
+        else:
+            print()
+            print(f"You selected the {selected_team} Sales Team")
+            break
+    return selected_team
+
+
+# SPARE for Development
+# 6X Get Customer rating
+#       Same principle being used, but now trapping a ValueError
+#       if value entered is not an integer using try .. except
+def get_customer_rating():
+    while True:
+        print_customer_rating_range()
+        try:
+            user_input = input("Please enter a customer rating (integer): ")
+            selected_rating = int(user_input)  # Attempt to convert the input to an integer
+
+            # Check if the entered rating exists in the DataFrame column
+            if selected_rating in sales2['Customer_Rating'].values:
+                print(f"Valid rating {selected_rating} entered.")
+                return selected_rating
+            else:
+                print("Rating not found. Please enter a valid rating.")
+
+        except ValueError:
+            print("Invalid input. Please enter an integer value.")
+
+
+
+
+
+
+
+
+
+
+
 # Display menu when application launches
 x = main_menu()
 
 # Control loop to allow menu display
-while x == 1 or x == 2 or x == 3 or x == 4 or x ==5 or x == 6 or x == 7 or x == 8 or x == 9 :
+while x == 1 or x == 2 or x == 3 or x == 4 or x == 5 or x == 6 or x == 7 or x == 8 or x == 9:
     if x == 1:
         all_data()
     elif x == 2:
